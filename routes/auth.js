@@ -34,10 +34,11 @@ function findUser(err,item){
 	try{
 		assert.equal(err,null);
 		if(item){
-			console.log(item);
+			return item;
 		}
 		else{
-			console.log('no user is there');
+			//console.log('no user is there');
+			return null;
 		}
 	}
 	catch(e){
@@ -50,12 +51,19 @@ function findUser(err,item){
 
 function handleLogin(req,res){
 	//console.log('I receieved a request');
-	var name = req.body.name,
-		password = req.body.password;
-	users.findOne({
+	var name = req.body.name;
+	var	password = req.body.password;
+	var user = users.findOne({
 		name: name,
 		password: password
 	},findUser);
+	console.log(user);
+	if(user){
+		console.log('User found out');
+	}
+	else{
+		console.log('Nothing here!');
+	}
 }
 
 router.post('/login',handleLogin);
