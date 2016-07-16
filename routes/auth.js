@@ -52,7 +52,7 @@ function handleLogin(req,res){
 					title: 'Blog',
 					token: token
 				}
-				res.render('blog',vm);
+				res.redirect('/users');				
 			}
 		}
 		catch(e){
@@ -82,6 +82,8 @@ router.use(function(req, res, next) {
 				// if everything is good, save to request for use in other routes
 				req.decoded = decoded;	
 				next();
+				console.log(req.decoded);
+				return res.redirect('/users');
 			}
 		});
 

@@ -1,0 +1,17 @@
+div.jumbotron{
+	text-align: center;
+	background: transparent;
+}
+
+#hero{
+	margin-bottom: 1em;
+}
+
+.jumbotron-label{
+	font-size: 2em;
+}
+
+
+i{
+	padding-right:5px; 
+}
