@@ -3,6 +3,8 @@ var router = express.Router();
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
 var url = 'mongodb://localhost:27017/blog';
+var secret = 'g@@k';
+var jwt = require('jsonwebtoken');
 
 //function to handle the the database connection
 var users = null;
@@ -23,50 +25,77 @@ mongo.connect(url,dbConnect);
 
 //Display the Login Page
 router.get('/login', function(req, res) {
-  var vm = {
-  	title: 'Login'
-  };
-  res.render('login',vm);
+	var vm = {
+		title: 'Login'
+	};
+	res.render('login',vm);
 });
-
-//function for handling the checking of records for the users in the database.
-function findUser(err,item){
-	try{
-		assert.equal(err,null);
-		if(item){
-			return item;
-		}
-		else{
-			//console.log('no user is there');
-			return null;
-		}
-	}
-	catch(e){
-		console.log('error occured while finding the user');
-	}
-}	
-
-
 
 
 function handleLogin(req,res){
-	//console.log('I receieved a request');
 	var name = req.body.name;
-	var	password = req.body.password;
-	var user = users.findOne({
-		name: name,
-		password: password
-	},findUser);
-	console.log(user);
-	if(user){
-		console.log('User found out');
-	}
-	else{
-		console.log('Nothing here!');
-	}
-}
+	var password = req.body.password;
 
+	users.findOne({name: name}).then(function(item){
+		try{
+			assert.notEqual(item,null);
+			if(item.password !== password){
+				console.log('wrong password');
+				res.redirect('/');
+			}
+			else{
+				console.log('The user verified');
+				var token = jwt.sign(item, secret, {
+					expiresIn: 86400 // expires in 24 hours
+				});
+				var vm = {
+					title: 'Blog',
+					token: token
+				}
+				res.render('blog',vm);
+			}
+		}
+		catch(e){
+			console.log(e);
+		}
+	});
+}
 router.post('/login',handleLogin);
 
+router.use(function(req, res, next) {
+
+	// check header or url parameters or post parameters for token
+	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+
+	// decode token
+	if (token) {
+
+		// verifies secret and checks exp
+		jwt.verify(token, secret, function(err, decoded) {			
+			if (err) {
+				var vm = {
+					success: false,
+					title: Welcome
+				};
+				return res.render('/',vm);		
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;	
+				next();
+			}
+		});
+
+	} else {
+
+		// if there is no token
+		// return an error
+		return res.status(403).send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+		
+	}
+	
+});
 
 module.exports = router;
