@@ -6,11 +6,14 @@
 </div>
 
 <div class="container">
-	<form class="/users/blog">
+	<form role="form" class="form-horizontal" method="POST" action="/users/post">
 		<input type="hidden" name="token" value="{{token}}" />
 		<div class="form-group">
 			<label class="control-label">Enter the post to be added:</label><br />
-			<textarea class="form-horizontal" id="post"></textarea>
+			<textarea class="form-horizontal" id="post" name="content"></textarea>
+		</div>
+		<div align="center">
+			<button type="submit" class="btn btn-lg btn-success">Post</button>
 		</div>
 	</form>
 </div>
