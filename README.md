@@ -8,11 +8,11 @@ Some features of this:
 
 2. Open source code. Implement it the way you want to.
 
-> Tech stack Used:
-	>>Server Side: NodeJs with ExpressJs
- 	>>Front end: Bootstrap
- 	>>Database: MongoDB
- 	>>Template engine: Handlebars
+3. Tech stack Used:
+	Server Side: NodeJs with ExpressJs
+ 	Front end: Bootstrap
+ 	Database: MongoDB
+ 	Template engine: Handlebars
 
 **Enjoy the code**
 
