@@ -22,16 +22,6 @@ function dbConnect(err,db){
 //Connecting to the database:
 mongo.connect(url,dbConnect);
 
-
-//Display the Login Page
-router.get('/login', function(req, res) {
-	var vm = {
-		title: 'Login'
-	};
-	res.render('login',vm);
-});
-
-
 function handleLogin(req,res){
 	var name = req.body.name;
 	var password = req.body.password;

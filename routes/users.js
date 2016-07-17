@@ -13,7 +13,7 @@ var posts = null;
 mongo.connect(url,function(err,db){
 	try{
 		assert.equal(err,null);
-		var posts = db.collection('posts');
+		posts = db.collection('posts');
 		console.log('I was able to get access to the collection containing all the posts');
 	}
 	catch(e){
@@ -26,20 +26,21 @@ mongo.connect(url,function(err,db){
 function PostTheBlog(req,res){
 	var content = req.body.content;
 	posts.insertOne({
-		data: content;
+		data: content,
+		user: 'shubham'
 	},function(err,done){
 		try{
 			assert.equal(err,null);
-			console.log('post inserted');
-			
+			console.log('post inserted');	
+			res.redirect('/blog');
+		}
+		catch(e){
+			console.log(e);
 		}
 	});	
 }
 
 
-
 router.post('/post',PostTheBlog);
-
-
 
 module.exports = router;
