@@ -50,9 +50,10 @@ function handleLogin(req,res){
 				});
 				var vm = {
 					title: 'Blog',
-					token: token
+					token: token,
+					name: name
 				}
-				res.redirect('/users');				
+				res.render('createBlog',vm);
 			}
 		}
 		catch(e){
@@ -62,42 +63,4 @@ function handleLogin(req,res){
 }
 router.post('/login',handleLogin);
 
-router.use(function(req, res, next) {
-
-	// check header or url parameters or post parameters for token
-	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-
-	// decode token
-	if (token) {
-
-		// verifies secret and checks exp
-		jwt.verify(token, secret, function(err, decoded) {			
-			if (err) {
-				var vm = {
-					success: false,
-					title: Welcome
-				};
-				return res.render('/',vm);		
-			} else {
-				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;	
-				next();
-				console.log(req.decoded);
-				return res.redirect('/users');
-			}
-		});
-
-	} else {
-
-		// if there is no token
-		// return an error
-		return res.status(403).send({ 
-			success: false, 
-			message: 'No token provided.'
-		});
-		
-	}
-	
-});
-
-module.exports = router;
+module.exports = router;0

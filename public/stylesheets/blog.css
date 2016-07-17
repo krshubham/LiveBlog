@@ -2,3 +2,14 @@
 	text-align: center;
 	background: transparent;
 }
+
+#post{
+	width: 90%;
+	height: 10em;
+	resize: none;
+}
+
+#post:focus{
+	outline: none;
+	border: 1px solid #000;
+}

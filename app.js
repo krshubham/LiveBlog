@@ -24,8 +24,57 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/auth',auth);
+
+
+//Middleware for all the authentication
+
+app.use(function(req, res, next) {
+
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.params.token || req.headers['x-access-token'] || res.locals.token;
+
+  // decode token
+  if (token) {
+
+    // verifies secret and checks exp
+    jwt.verify(token, secret, function(err, decoded) {      
+      if (err) {
+        var vm = {
+          success: false,
+          title: Welcome
+        };
+        return res.render('index',vm);    
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;  
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+      success: false, 
+      message: 'No token provided.'
+    });
+    
+  }
+  
+});
+/********************************************
+*                                           *
+*           Authenticated routes            *
+*********************************************/
+
+app.use('/users', users);
+
+
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
