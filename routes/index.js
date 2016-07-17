@@ -28,7 +28,7 @@ function ShowBlog(req,res){
 	BlogPosts.each(function(err,doc){
 		try{
 			assert.equal(err,null);
-			arr.push(doc.data);
+			arr.push(doc);
 		}
 		catch(e){
 			console.log('Error in line 32: index.js' + e);

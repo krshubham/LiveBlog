@@ -27,7 +27,8 @@ function PostTheBlog(req,res){
 	var content = req.body.content;
 	posts.insertOne({
 		data: content,
-		user: 'shubham'
+		user: 'shubham',
+		date: Date()
 	},function(err,done){
 		try{
 			assert.equal(err,null);
