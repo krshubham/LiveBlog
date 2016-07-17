@@ -10,8 +10,11 @@ Some features of this:
 
 3. Tech stack Used:
 	Server Side: NodeJs with ExpressJs
+
  	Front end: Bootstrap
+ 	
  	Database: MongoDB
+ 	
  	Template engine: Handlebars
 
 **Enjoy the code**
