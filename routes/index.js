@@ -34,6 +34,8 @@ function ShowBlog(req,res){
 			console.log('Error in line 32: index.js' + e);
 		}
 	});
+	arr.reverse();
+	console.log(arr);
 	var vm =  {
 		data : arr
 	};
