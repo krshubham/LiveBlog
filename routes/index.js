@@ -19,29 +19,32 @@ mongo.connect(url,function(err,db){
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Welcome' });
+	console.log(req.connection.remoteAddress)
 });
 
 
+//Original version of the ShowBlog function
 function ShowBlog(req,res){
 	var BlogPosts = posts.find();
-	var arr = []
+	var arr = [];
 	BlogPosts.each(function(err,doc){
 		try{
 			assert.equal(err,null);
-			arr.push(doc);
+			if(doc !== null){
+				arr.unshift(doc);
+			}
 		}
 		catch(e){
 			console.log('Error in line 32: index.js' + e);
 		}
 	});
-	arr.reverse();
-	console.log(arr);
 	var vm =  {
-		data : arr
+		title: 'Kumar Shubham',
+		posts : arr
 	};
+	console.log(arr);
 	res.render('blog',vm);
 }
-
 
 router.get('/blog',ShowBlog);
 module.exports = router;

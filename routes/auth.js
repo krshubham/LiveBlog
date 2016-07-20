@@ -47,6 +47,7 @@ function handleLogin(req,res){
 			}
 		}
 		catch(e){
+			console.log('There is an error ');
 			console.log(e);
 		}
 	});

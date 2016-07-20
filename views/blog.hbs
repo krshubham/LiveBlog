@@ -1,8 +1,20 @@
-<h1>This is the blog.</h1>
-
-{{#each data}}
-<div class="alert alert-success">
-	{{data}}
-	{{date}}
+<style type="text/css">
+	.jumbotron{
+		text-align: center;
+	}
+</style>
+<div class="jumbotron">
+	<h1>My world is here!</h1>
 </div>
-{{/each}}
+<div class="container box">
+	{{#each posts}}
+	<div class="row">
+		<div class="row">
+			{{data}}
+		</div>
+		<div class="row">
+			{{date}}
+		</div>
+	</div>
+	{{/each}}
+</div>
