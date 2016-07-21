@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
       if (err) {
         var vm = {
           success: false,
-          title: Welcome
+          title: 'Welcome'
         };
         return res.render('index',vm);    
       } else {
@@ -67,7 +67,6 @@ app.use(function(req, res, next) {
   
 });
 /********************************************
-*                                           *
 *           Authenticated routes            *
 *********************************************/
 

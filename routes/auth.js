@@ -16,7 +16,7 @@ function dbConnect(err,db){
 	}
 	catch(e){
 		console.log('Unable to connect to the database');
-		//process.exit(0);
+		process.exit(0);
 	}
 }
 //Connecting to the database:
@@ -25,7 +25,6 @@ mongo.connect(url,dbConnect);
 function handleLogin(req,res){
 	var name = req.body.name;
 	var password = req.body.password;
-
 	users.findOne({name: name}).then(function(item){
 		try{
 			assert.notEqual(item,null);
@@ -36,7 +35,7 @@ function handleLogin(req,res){
 			else{
 				console.log('The user verified');
 				var token = jwt.sign(item, secret, {
-					expiresIn: 86400 // expires in 24 hours
+					expiresIn: 10 // expires in 24 hours
 				});
 				var vm = {
 					title: 'Blog',
