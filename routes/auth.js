@@ -35,7 +35,7 @@ function handleLogin(req,res){
 			else{
 				console.log('The user verified');
 				var token = jwt.sign(item, secret, {
-					expiresIn: 10 // expires in 24 hours
+					expiresIn: 6000 // expires in 10 minutes
 				});
 				var vm = {
 					title: 'Blog',
