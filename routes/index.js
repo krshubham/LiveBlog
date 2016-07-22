@@ -5,10 +5,12 @@ var assert = require('assert');
 var url = 'mongodb://localhost:27017/blog';
 
 var posts = null;
+var users = null;
 mongo.connect(url,function(err,db){
 	try{
 		assert.equal(err,null);
 		posts = db.collection('posts');
+		users = db.collection('users');
 	}
 	catch(e){
 		console.log('Some error occured in index.js');
@@ -45,5 +47,30 @@ function ShowBlog(req,res){
 	res.render('blog',vm);
 }
 
+
+function MakeSampleUser(req,res){
+	var name = "krshubham",
+	password = "shubhi";
+	users.insertOne({
+		name: name,
+		password: password
+	},function(err,done){
+		try{
+			assert.equal(err,null);
+			res.json({
+				success: true,
+				message: "success in creating the user"
+			});	
+		}
+		catch(err){
+			res.status(500).send({
+				success: false,
+				message: "Sample user was not created"
+			});
+		}
+	});
+}
+
 router.get('/blog',ShowBlog);
+router.get('/setup',MakeSampleUser);
 module.exports = router;
