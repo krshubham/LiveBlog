@@ -30,7 +30,7 @@ function ShowBlog(req,res){
 	BlogPosts.each(function(err,doc){
 		try{
 			assert.equal(err,null);
-			if(doc !== null){
+			if(doc!=null){
 				arr.unshift(doc);
 			}
 		}
@@ -40,9 +40,8 @@ function ShowBlog(req,res){
 	});
 	var vm =  {
 		title: 'Kumar Shubham',
-		posts : arr
+		posts: arr
 	};
-	console.log(arr);
 	res.render('blog',vm);
 }
 

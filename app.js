@@ -41,13 +41,9 @@ app.use(function(req, res, next) {
 
     // verifies secret and checks exp
     jwt.verify(token, secret, function(err, decoded) {      
-      if (err) {
-        var vm = {
-          success: false,
-          title: 'Welcome'
-        };
-        return res.render('index',vm);    
-      } else {
+      if (err){
+       res.redirect('/');    
+     } else {
         // if everything is good, save to request for use in other routes
         req.decoded = decoded;  
         next();

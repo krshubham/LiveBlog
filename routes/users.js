@@ -2,13 +2,11 @@ var express = require('express');
 var router = express.Router();
 var assert = require('assert');
 var mongo = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/blog'
-
+var url = 'mongodb://localhost:27017/blog';
 var posts = null;
 
 //I made it by keeping in my mind that only I will use this thing. So Your db design can obviously
 //differ form my db design.
-
 
 mongo.connect(url,function(err,db){
 	try{
@@ -24,9 +22,11 @@ mongo.connect(url,function(err,db){
 
 
 function PostTheBlog(req,res){
-	var content = req.body.content;
+	var content = req.body.content,
+		title = req.body.title;
 	posts.insertOne({
 		data: content,
+		title: title,
 		user: 'shubham',
 		date: Date()
 	},function(err,done){

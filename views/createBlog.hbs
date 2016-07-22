@@ -9,6 +9,10 @@
 	<form role="form" class="form-horizontal" method="POST" action="/users/post">
 		<input type="hidden" name="token" value="{{token}}" />
 		<div class="form-group">
+			<label class="control-label">Enter the title of the post</label><br />
+			<input type="text" name="title">
+		</div>
+		<div class="form-group">
 			<label class="control-label">Enter the post to be added:</label><br />
 			<textarea class="form-horizontal" id="post" name="content"></textarea>
 		</div>
