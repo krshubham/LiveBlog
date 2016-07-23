@@ -10,6 +10,7 @@ a:hover{
 }
 .demo-card-wide.mdl-card {
 	width: 70em;
+	text-align: center;
 	margin: 0 auto;
 	margin-top: 20px;
 	margin-bottom: 30px;
@@ -18,14 +19,16 @@ a:hover{
 	color: #fff;
 	height: 176px;
 }
+
 .demo-card-wide > .mdl-card__menu {
 	color: #fff;
 }
+
 .mdl-card__title-text{
 	font-size: 4em;
 }
 
-body {
+body{
 	background: #fafafa;
 	position: relative;
 }
