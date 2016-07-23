@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var assert = require('assert');
 var mongo = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/blog';
+var url = 'mongodb://krshubham:ItsNewOne11@ds027425.mlab.com:27425/blog';
 var posts = null;
 
 //I made it by keeping in my mind that only I will use this thing. So Your db design can obviously
