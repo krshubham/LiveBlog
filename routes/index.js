@@ -21,7 +21,6 @@ mongo.connect(url,function(err,db){
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Welcome' });
-	console.log(req.connection.remoteAddress)
 });
 
 
