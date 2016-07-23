@@ -37,12 +37,8 @@ function handleLogin(req,res){
 				var token = jwt.sign(item, secret, {
 					expiresIn: 6000 // expires in 10 minutes
 				});
-				var vm = {
-					title: 'Blog',
-					token: token,
-					name: name
-				}
-				res.render('createBlog',vm);
+				
+				res.redirect('/users/create');
 			}
 		}
 		catch(e){

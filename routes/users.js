@@ -20,6 +20,16 @@ mongo.connect(url,function(err,db){
 
 });
 
+function CreateBlog(req,res){
+	var vm = {
+		title: 'Blog',
+		name: name
+	};
+	res.render('createBlog',vm);
+}
+
+
+
 
 function PostTheBlog(req,res){
 	var content = req.body.content,
@@ -43,5 +53,5 @@ function PostTheBlog(req,res){
 
 
 router.post('/post',PostTheBlog);
-
+router.get('/create',CreateBlog);
 module.exports = router;

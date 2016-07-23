@@ -1,0 +1,169 @@
+Name: Kumar Shubham
+Regno: 15bce1283
+
+Question:
+Construct an E-R diagram for a car-insurance company whose customers own one or more cars each. 
+Each car has associated with it zero to any number of recorded accidents.
+
+
+
+SQL*Plus: Release 11.2.0.1.0 Production on Fri Jul 22 10:48:35 2016
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: 15bce1283@orcl
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> create table customers(id number, name varchar2(20));
+
+Table created.
+
+SQL> desc customers
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(20)
+
+SQL> create table cars(license varchar(10), model varchar(10),year number);
+
+Table created.
+
+SQL> desc cars
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ LICENSE                                            VARCHAR2(10)
+ MODEL                                              VARCHAR2(10)
+ YEAR                                               NUMBER
+
+SQL> create table accidents(report_num number, location varchar2(50),date date)
+  2  create table accidents(report_num number, location varchar2(50),date date);
+
+create table accidents(report_num number, location varchar2(50),date date)
+                                                                *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+SQL> create table accidents(report_num number, location varchar2(50),time Date);
+
+
+Table created.
+
+SQL> desc accidents
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ REPORT_NUM                                         NUMBER
+ LOCATION                                           VARCHAR2(50)
+ TIME                                               DATE
+
+SQL> desc cars
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ LICENSE                                            VARCHAR2(10)
+ MODEL                                              VARCHAR2(10)
+ YEAR                                               NUMBER
+
+SQL> desc customers
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(20)
+
+SQL> alter table customers ADD (address varchar2(50));
+
+Table altered.
+
+SQL> desc customers
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(50)
+
+SQL> desc cars
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ LICENSE                                            VARCHAR2(10)
+ MODEL                                              VARCHAR2(10)
+ YEAR                                               NUMBER
+
+SQL> desc accidents
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ REPORT_NUM                                         NUMBER
+ LOCATION                                           VARCHAR2(50)
+ TIME                                               DATE
+
+SQL> insert into customers values(1,'shubham','5,Dakshin Marg');
+
+1 row created.
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME
+---------- --------------------
+ADDRESS
+--------------------------------------------------
+         1 shubham
+5,Dakshin Marg
+
+SQL> insert into customers(1,"shubham","5,Dakshin Marg");
+insert into customers(1,"shubham","5,Dakshin Marg")
+                      *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into customers values(1,"shubham","5,Dakshin Marg");
+insert into customers values(1,"shubham","5,Dakshin Marg")
+                                         *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into customers values(1,'shubham','5,Dakshin Marg');
+
+1 row created.
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME
+---------- --------------------
+ADDRESS
+--------------------------------------------------
+         1 shubham
+5,Dakshin Marg
+
+SQL> desc cars
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ LICENSE                                            VARCHAR2(10)
+ MODEL                                              VARCHAR2(10)
+ YEAR                                               NUMBER
+
+LICENSE    MODEL            YEAR
+---------- ---------- ----------
+chd245     i20              2008
+
+SQL> select * from accidents
+  2  ;
+
+REPORT_NUM LOCATION                                           TIME
+---------- -------------------------------------------------- ---------
+       123 chandigarh                                         15-JUL-09
+
+SQL>
