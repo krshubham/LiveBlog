@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://krshubham:ItsNewOne11@ds027425.mlab.com:27425/blogw';
+var url = 'mongodb://localhost:27017/blog';
 var secret = 'g@@k';
 var jwt = require('jsonwebtoken');
 

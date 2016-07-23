@@ -11,18 +11,18 @@ a:hover{
 .demo-card-wide.mdl-card {
 	width: 70em;
 	margin: 0 auto;
-	margin-bottom: 50px;
+	margin-top: 20px;
+	margin-bottom: 30px;
 }
 .demo-card-wide > .mdl-card__title {
 	color: #fff;
 	height: 176px;
-	background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/welcome_card_tuts.png') center / cover;
 }
 .demo-card-wide > .mdl-card__menu {
 	color: #fff;
 }
 .mdl-card__title-text{
-	text-align: center;
+	font-size: 4em;
 }
 
 body {
