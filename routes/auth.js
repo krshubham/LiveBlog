@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://krshubham:ItsNewOne11@ds027425.mlab.com:27425/blog';
+var url = 'mongodb://krshubham:ItsNewOne11@ds027425.mlab.com:27425/blogw';
 var secret = 'g@@k';
 var jwt = require('jsonwebtoken');
 
@@ -48,6 +48,7 @@ function handleLogin(req,res){
 		catch(e){
 			console.log('There is an error ');
 			console.log(e);
+			res.redirect('/');
 		}
 	});
 }
