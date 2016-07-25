@@ -22,7 +22,7 @@ function dbConnect(err,db){
 //Connecting to the database:
 mongo.connect(url,dbConnect);
 
-function handleLogin(req,res){
+function handleLogin(req,res,next){
 	var name = req.body.name;
 	var password = req.body.password;
 	users.findOne({name: name}).then(function(item){
@@ -37,8 +37,12 @@ function handleLogin(req,res){
 				var token = jwt.sign(item, secret, {
 					expiresIn: 6000 // expires in 10 minutes
 				});
-				
-				res.redirect('/users/create');
+				var vm = {
+					title: 'Create',
+					token: token
+				};
+				res.render('createBlog',vm);
+				//res.redirect('/users/create');
 			}
 		}
 		catch(e){

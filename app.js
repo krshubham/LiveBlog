@@ -33,7 +33,7 @@ app.use('/auth',auth);
 app.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
-  var token = req.body.token || req.params.token || req.headers['x-access-token'] || res.locals.token;
+  var token = req.body.token || req.params.token || req.headers['x-access-token'];
 
   // decode token
   if (token) {
@@ -44,7 +44,8 @@ app.use(function(req, res, next) {
        res.redirect('/');    
      } else {
         // if everything is good, save to request for use in other routes
-        req.decoded = decoded;  
+        req.decoded = decoded;
+        console.log(decoded);
         next();
       }
     });
