@@ -28,9 +28,6 @@ function CreateBlog(req,res){
 	res.render('createBlog',vm);
 }
 
-
-
-
 function PostTheBlog(req,res){
 	var content = req.body.content,
 		title = req.body.title;
@@ -38,12 +35,13 @@ function PostTheBlog(req,res){
 		data: content,
 		title: title,
 		user: 'shubham',
-		date: Date()
+		date: new Date().toLocaleDateString(),
+		time: new Date().toLocaleTimeString()
 	},function(err,done){
 		try{
 			assert.equal(err,null);
 			console.log('post inserted');	
-			res.redirect('/blog');
+			res.redirect('/');
 		}
 		catch(e){
 			console.log(e);

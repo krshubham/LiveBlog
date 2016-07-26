@@ -19,9 +19,7 @@ mongo.connect(url,function(err,db){
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-	res.render('index', { title: 'Welcome' });
-});
+router.get('/', ShowBlog);
 
 
 //Original version of the ShowBlog function
@@ -70,6 +68,10 @@ function MakeSampleUser(req,res){
 	});
 }
 
-router.get('/blog',ShowBlog);
+router.get('/admin',function(req,res,next){
+	res.render('index',{
+		title: 'admin'
+	});
+});
 router.get('/setup',MakeSampleUser);
 module.exports = router;
