@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://localhost:27017/blog';
+var url = 'mongodb://localhost:28017/blog';
 
 var posts = null;
 var users = null;
