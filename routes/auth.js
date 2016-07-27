@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://krshubham:geek@911@ds027425.mlab.com:27425/blog';
+var url = 'mongodb://localhost:27017/blog';
 var secret = 'g@@k';
 var jwt = require('jsonwebtoken');
 
@@ -16,7 +16,7 @@ function dbConnect(err,db){
 	}
 	catch(e){
 		console.log('Unable to connect to the database');
-		process.exit(0);
+		//process.exit(0);
 	}
 }
 //Connecting to the database:
