@@ -41,7 +41,7 @@ function ShowBlog(req,res){
 		title: 'Kumar Shubham',
 		posts: arr
 	};
-	res.render('blog',vm);
+	return res.render('blog',vm);
 }
 
 
