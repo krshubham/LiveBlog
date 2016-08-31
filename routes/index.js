@@ -19,8 +19,8 @@ function ShowBlog(req,res){
 			posts = db.collection('posts');
 			users = db.collection('users');
 			var BlogPosts = posts.find();
-			console.log(BlogPosts);
-			console.log('Db connection for posts done');
+			//console.log(BlogPosts);
+			//console.log('Db connection for posts done');
 			var arr = [];
 			BlogPosts.each(function(err,doc){
 				try{
